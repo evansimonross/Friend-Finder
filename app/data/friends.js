@@ -1,4 +1,4 @@
-var friends = [
+module.exports = [
     {
         name: "Franklin",
         photo: "https://upload.wikimedia.org/wikipedia/en/d/df/Franklin_turtle.jpg",

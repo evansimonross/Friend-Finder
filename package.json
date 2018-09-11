@@ -2,7 +2,7 @@
   "name": "FriendFinder",
   "version": "1.0.0",
   "description": "A personality quiz to find someone who's a good fit for you!",
-  "main": "index.js",
+  "main": "app/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

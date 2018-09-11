@@ -11,7 +11,7 @@ module.exports = [
     },
     {
         name: "Norbert",
-        photo: "https://statici.behindthevoiceactors.com/behindthevoiceactors/_img/chars/norbert-foster-beaver-angry-beavers-5.33.jpg",
+        photo: "http://iv1.lisimg.com/image/11892943/475full-norbert-beaver.jpg",
         scores: [3,2,5,5,1,2,4,1,1,5]
     }
 ];

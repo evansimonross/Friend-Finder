@@ -115,13 +115,15 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
     <script>
-        var friends = [];
+        var friend;
+        var friends;
         $(document).ready(function(){
             $.ajax({
                 method: "GET",
                 url: "api/friends"
             }).then(function(data){
                 friends = data;
+                console.log(friends);
             });
         });
         $('#submit').on('click',function(){
@@ -157,7 +159,7 @@
                     return;
                 }
             }
-            var friend = {
+            friend = {
                 name: name,
                 photo: photo, 
                 scores: scores
@@ -169,7 +171,20 @@
                 data: friend
             }).then(function(data){
                 if(data){
-                    
+                    var bestFriendIndex = 0;
+                    var bestFriendDiff = 40;
+                    for(var i=0; i<friends.length;i++){
+                        var f = friends[i];
+                        var diff = 0;
+                        for(var j=0; j<f.scores.length;j++){
+                            diff += Math.abs(friend.scores[j] - f.scores[j]);
+                        }
+                        if(diff<bestFriendDiff){
+                            bestFriendIndex = i;
+                            bestFriendDiff = diff;
+                        }
+                    }
+                    alert("YOUR BEST FRIEND IS " + friends[bestFriendIndex].name);
                 }
             });
         });

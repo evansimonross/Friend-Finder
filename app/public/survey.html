@@ -9,6 +9,7 @@
     <style>
         li{ margin-bottom: 45px;}
         input{ margin-left: 15px;}
+        input[type="text"]{ width: 500px; margin-bottom: 30px; }
     </style>
 </head>
 
@@ -17,6 +18,10 @@
     <h3>The only way to find a friend.™</h3>
     <p>Please answer the following questions honestly. We'll know if you're lying.</p><br>
     <form>
+        <p><b>Your name:</b></p>
+        <input type="text" name="name">
+        <p><b>Your photo:</b> (hyperlink)</p>
+        <input type="text" name="photo">
         <ol>
             <li>
                 <p><b>When it comes to friends, the more the merrier. I'd rather have many friends than few.</b></p>
@@ -111,6 +116,20 @@
         crossorigin="anonymous"></script>
     <script>
         $('#submit').on('click',function(){
+            var name = $('input[name=name]').val();
+            if(name===undefined){
+                alert("Don't forget to include your name!");
+                return;
+            }
+            var photo = $('input[name=photo]').val();
+            if(photo===undefined){
+                alert("Don't forget to include a photo!");
+                return;
+            }
+            if(!(photo.includes(".jpg")||photo.includes(".jpeg")||photo.includes(".png")||photo.includes(".gif"))){
+                alert("Please link a photo that we can display! We only accept jpeg, png and gif formats!");
+                return;
+            }
             var answers = [
                 $('input[name=more]:checked').val(),
                 $('input[name=hotdish]:checked').val(),
@@ -128,7 +147,7 @@
                     alert("Don't forget to answer #" + i + "!");
                     return;
                 }
-            } 
+            }
         });
     </script>
 </body>

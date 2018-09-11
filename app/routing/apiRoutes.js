@@ -1,4 +1,4 @@
-var friends = require("./friends.js");
+var friends = require("../data/friends.js");
 
 var routes = function(app){
     app.get("api/friends", function(req, res){

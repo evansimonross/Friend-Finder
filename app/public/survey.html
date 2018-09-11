@@ -102,7 +102,7 @@
                 <input type="radio" id="think1" name="think" value="1"><label for="think1">Strongly Disagree</label>
             </li>
             <li>
-                <p><b>My answers were 100% honest.</b></p>
+                <p><b>My scores were 100% honest.</b></p>
                 <input type="radio" id="honest5" name="honest" value="5"><label for="honest5">Strongly Agree</label>
                 <input type="radio" id="honest4" name="honest" value="4"><label for="honest4">Somewhat Agree</label>
                 <input type="radio" id="honest3" name="honest" value="3"><label for="honest3">True Neutral</label>
@@ -115,6 +115,15 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
     <script>
+        var friends = [];
+        $(document).ready(function(){
+            $.ajax({
+                method: "GET",
+                url: "api/friends"
+            }).then(function(data){
+                friends = data;
+            });
+        });
         $('#submit').on('click',function(){
             var name = $('input[name=name]').val();
             if(name===undefined){
@@ -130,7 +139,7 @@
                 alert("Please link a photo that we can display! We only accept jpeg, png and gif formats!");
                 return;
             }
-            var answers = [
+            var scores = [
                 $('input[name=more]:checked').val(),
                 $('input[name=hotdish]:checked').val(),
                 $('input[name=makeawish]:checked').val(),
@@ -142,12 +151,27 @@
                 $('input[name=think]:checked').val(),
                 $('input[name=honest]:checked').val(),
             ];           
-            for(var i=0; i<answers.length; i++){
-                if(answers[i]===undefined){
+            for(var i=0; i<scores.length; i++){
+                if(scores[i]===undefined){
                     alert("Don't forget to answer #" + i + "!");
                     return;
                 }
             }
+            var friend = {
+                name: name,
+                photo: photo, 
+                scores: scores
+            };
+
+            $.ajax({
+                method: "POST",
+                url: "/api/friends", 
+                data: friend
+            }).then(function(data){
+                if(data){
+                    
+                }
+            });
         });
     </script>
 </body>

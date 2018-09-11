@@ -107,5 +107,30 @@
         </ol>
         <input type="button" id="submit" value="&nbsp;Find Your Friend™" style="margin-left: 50px; margin-bottom: 50px; width: 200px; height: 35px; font-size:1.25em">
     </form>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script>
+        $('#submit').on('click',function(){
+            var answers = [
+                $('input[name=more]:checked').val(),
+                $('input[name=hotdish]:checked').val(),
+                $('input[name=makeawish]:checked').val(),
+                $('input[name=travel]:checked').val(),
+                $('input[name=waste]:checked').val(),
+                $('input[name=best]:checked').val(),
+                $('input[name=irrational]:checked').val(),
+                $('input[name=honey]:checked').val(),
+                $('input[name=think]:checked').val(),
+                $('input[name=honest]:checked').val(),
+            ];           
+            for(var i=0; i<answers.length; i++){
+                if(answers[i]===undefined){
+                    alert("Don't forget to answer #" + i + "!");
+                    return;
+                }
+            } 
+        });
+    </script>
 </body>
+
 </html>
